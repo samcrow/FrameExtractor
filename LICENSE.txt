@@ -14,4 +14,4 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-This program incorporates binary distributions of FFMpeg <http://ffmpeg.org/> which are licensed under the GPL v3 license.
+This program incorporates binary distributions of FFmpeg <http://ffmpeg.org/> which are licensed under the GPL v3 license.
