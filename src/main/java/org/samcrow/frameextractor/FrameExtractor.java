@@ -84,9 +84,13 @@ public class FrameExtractor extends Task<Void> {
         //Save the frame rate to a file
         File frameRateFile = new File(outDir, "frame_rate.txt");
         frameRateFile.createNewFile();
-        try (FileWriter writer = new FileWriter(frameRateFile)) {
+        FileWriter writer = new FileWriter(frameRateFile);
+        try {
             writer.append(String.valueOf(frameRate));
             writer.append(System.getProperty("line.separator"));
+        }
+        finally {
+            writer.close();
         }
         
         //Scale the resolution to create an output resolution that fits the video's displayed aspect ratio
@@ -106,8 +110,9 @@ public class FrameExtractor extends Task<Void> {
         Process process = builder.start();
 
         updateMessage("Extracting video length");
-
-        try (BufferedReader output = new BufferedReader(new InputStreamReader(process.getInputStream()));) {
+        
+        BufferedReader output = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        try {
 
             //A pattern that stores the frame number, frame rate, and time in named capture groups 'frame', 'fps', and 'time'
             final Pattern frameLinePattern = Pattern.compile("frame=\\s*(?<frame>\\d+)\\s*fps=\\s*(?<fps>[.\\d]+)\\s*q=\\s*[.\\d]+\\s*size=\\s*[a-zA-Z/]+\\s*time=\\s*(?<time>[:|.|\\d]+)");
@@ -146,6 +151,9 @@ public class FrameExtractor extends Task<Void> {
 
                 System.out.println("Read line: " + line);
             }
+        }
+        finally {
+            output.close();
         }
 
         if (isCancelled()) {
@@ -216,7 +224,8 @@ public class FrameExtractor extends Task<Void> {
         VideoInfo info = new VideoInfo();
 
         //Read the standard output
-        try (BufferedReader outReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+        BufferedReader outReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        try {
 
 
             //Search for 1-3 digits, followed by a space and then "fps"
@@ -257,6 +266,9 @@ public class FrameExtractor extends Task<Void> {
                     }
                 }
             }
+        }
+        finally {
+            outReader.close();
         }
         
         if(info.frameRate == 0 || info.aspectRatio == null) {
