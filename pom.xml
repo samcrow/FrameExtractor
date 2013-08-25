@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.samcrow</groupId>
-    <artifactId>FrameExtractorMaven</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>FrameExtractor</artifactId>
+    <version>0.2.0beta1</version>
     <packaging>jar</packaging>
 
-    <name>FrameExtractorMaven</name>
+    <name>FrameExtractor</name>
     <url>http://maven.apache.org</url>
     
     <organization>
