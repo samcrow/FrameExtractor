@@ -1,4 +1,4 @@
-Frame Viewer is a simple application that can be used to extract still frames from video.
+Frame Extractor is a simple application that can be used to extract still frames from video.
 
 It is a simple GUI frontend for [FFmpeg](http://ffmpeg.org/), so it supports all the file types and codecs that FFmpeg supports.
 
